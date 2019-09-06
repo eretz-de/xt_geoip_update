@@ -25,3 +25,23 @@ But with start and end address it would be simply:
 
 ## Tools
 
+### xt_geoip_mergerange.py
+
+This reads from STDIN or the given file and writes the merged ranges to STDOUT.
+
+It expects the input to be sorted.
+
+
+### xt_geoip_filtercc.py
+
+This reads from STDIN or the given file and writes the ranges from the given countries to STDOUT.
+
+Give the countries to select as comma seperated list of country codes as first argument.
+
+
+### xt_geoip_mergecc.py
+
+This reads from STDIN or the given file and writes the ranges from to STDOUT but modifies the given countries.
+
+You can use this to create a new country that contains the ranges from multiple other countries. Because of the range merging from [#xt_geoip_mergerange.py] this new country may have fewer ranges than the sum of the original countries.
+
