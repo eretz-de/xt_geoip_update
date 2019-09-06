@@ -43,7 +43,7 @@ Give the countries to select as comma separated list of country codes as first a
 
 This reads from STDIN or the given file and writes the ranges from to STDOUT but modifies the given countries.
 
-You can use this to create a new country that contains the ranges from multiple other countries. Because of the range merging from [xt_geoip_mergerange.py](#xt_geoip_mergerange.py) this new country may have fewer ranges than the sum of the original countries.
+You can use this to create a new country that contains the ranges from multiple other countries. Because of the range merging from [xt_geoip_mergerange.py](#xt_geoip_mergerangepy) this new country may have fewer ranges than the sum of the original countries.
 
 You need to give the new country name as first argument (not really used), then the new country code not allowed to collide with existing codes and then the comma separated list of country codes to be merged.
 
