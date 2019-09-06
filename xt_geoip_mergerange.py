@@ -32,13 +32,19 @@ def main():
     numStart, numEnd = long(numStart.strip('"')), long(numEnd.strip('"'))
     assert ll[2] == "%s" % numStart, "number conversion failed, signed problem?"
     assert ll[3] == "%s" % numEnd, "number conversion failed, signed problem?"
+
+    if lastNumEnd is not None:
+      assert lastNumEnd <= numEnd, "wrong sort order"
+      if numStart < lastNumEnd+1:
+        print >> sys.stderr, "Warning: overlapping ranges, check your data", lastll, ll
+
     if ':' in ipStart:
       cnt6In += 1
     else:
       cnt4In += 1
     if lastCC == cc and numStart <= lastNumEnd+1:
       # merge range
-      #print >> sys.stderr, "HUHU ", lastll, ll
+      #print >> sys.stderr, "merge two ranges ", lastll, ll
       assert ll[5] == lastll[5]
       lastll = lastll[0], ll[1], lastll[2], ll[3], ll[4], ll[5]
     else:
