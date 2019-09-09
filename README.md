@@ -58,8 +58,8 @@ Merge the full database:
 
 Create two new countries for optimized search in Netfilter:
 
-    xt_geoip_filtercc.py "NL,DK,NO,AT,A1,A2" /xt_build/GeoIP-merged.csv |
-      xt_geoip_mergecc.py "Next vacations" "Y0" "NL,DK,NO,SE,AT" |
+    xt_geoip_filtercc.py "NL,DK,NO,A1,A2" /xt_build/GeoIP-merged.csv |
+      xt_geoip_mergecc.py "Next vacations" "Y0" "NL,DK,NO" |
       xt_geoip_mergecc.py "Evil Hackers" "X0" "A1,A2" |
       xt_geoip_mergerange.py > /xt_build/special-countries-merged.csv
 
@@ -89,8 +89,8 @@ To create special countries for your local firewall you can place a script `xt_r
     cd "$BUILDDIR"
 
     # create our own countries because of the merging they are smaller than the sum
-    xt_geoip_filtercc.py "NL,DK,NO,AT,A1,A2" ./GeoIP-merged.csv |
-      xt_geoip_mergecc.py "Next vacations" "Y0" "DE,NL,DK,NO,SE,AT,CH" |
+    xt_geoip_filtercc.py "NL,DK,NO,A1,A2" ./GeoIP-merged.csv |
+      xt_geoip_mergecc.py "Next vacations" "Y0" "NL,DK,NO" |
       xt_geoip_mergecc.py "Evil Hackers" "X0" "A1,A2" |
       xt_geoip_mergerange.py > ./special-countries-merged.csv
 
