@@ -10,6 +10,7 @@ contiguous ranges.
 
 
 from __future__ import with_statement
+from __future__ import print_function   # prepare for python3, since Python3.3 we would have print("", flush=True)
 
 import sys
 
@@ -24,7 +25,7 @@ def main():
   oldCCs = set([s.strip() for s in sys.argv[3].split(',')])
   sys.argv = [sys.argv[0]] + sys.argv[4:]   # needed for fileinput
 
-  print >> sys.stderr, "Replacing CC (%s) with %s (%s)" % (list(oldCCs), newCC, newCountry)
+  print("Replacing CC (%s) with %s (%s)" % (list(oldCCs), newCC, newCountry), file=sys.stderr)
   sys.stderr.flush()
 
   reader = csv.reader(fileinput.input())
@@ -33,7 +34,7 @@ def main():
     if ll[4] in oldCCs:
       ll[4] = newCC
       ll[5] = newCountry
-    print >> sys.stdout, ",".join(["\"%s\"" %s for s in ll])
+    print(",".join(["\"%s\"" %s for s in ll]))
 
 
 

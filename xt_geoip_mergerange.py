@@ -13,6 +13,7 @@ the CSV from 433401 lines to 211443 lines.
 
 
 from __future__ import with_statement
+from __future__ import print_function   # prepare for python3, since Python3.3 we would have print("", flush=True)
 
 import sys
 
@@ -36,7 +37,7 @@ def main():
     if lastNumEnd is not None:
       assert lastNumEnd <= numEnd, "wrong sort order"
       if numStart < lastNumEnd+1:
-        print >> sys.stderr, "Warning: overlapping ranges, check your data", lastll, ll
+        print("Warning: overlapping ranges, check your data", lastll, ll, file=sys.stderr)
         sys.stderr.flush()
 
     if ':' in ipStart:
@@ -50,7 +51,7 @@ def main():
       lastll = lastll[0], ll[1], lastll[2], ll[3], ll[4], ll[5]
     else:
       if lastll:
-        print >> sys.stdout, ",".join(["\"%s\"" %s for s in lastll])
+        print(",".join(["\"%s\"" %s for s in lastll]))
         if ':' in lastll[0]:
           cnt6Out += 1
         else:
@@ -59,14 +60,14 @@ def main():
     lastNumEnd = numEnd
     lastCC = cc
   if lastll:
-    print >> sys.stdout, ",".join(["\"%s\"" %s for s in lastll])
+    print(",".join(["\"%s\"" %s for s in lastll]))
     if ':' in lastll[0]:
       cnt6Out += 1
     else:
       cnt4Out += 1
 
   sys.stdout.flush()
-  print >> sys.stderr, "Stats: IPv4 read %(cnt4In)d ranges, wrote %(cnt4Out)d; IPv6 read %(cnt6In)d ranges, wrote %(cnt6Out)d" % locals()
+  print("Stats: IPv4 read %(cnt4In)d ranges, wrote %(cnt4Out)d; IPv6 read %(cnt6In)d ranges, wrote %(cnt6Out)d" % locals(), file=sys.stderr)
   sys.stderr.flush()
 
 
