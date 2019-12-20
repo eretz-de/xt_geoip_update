@@ -3,9 +3,14 @@
 """
 Merges GeoIP ranges from a GeoLite2 database.
 
-Because the original database works with subnets but we
-expect a ranges with a start and end ip address, we can
-merge sometimes ranges that are contigous.
+Because the original database works with subnets (netmasks) but we
+expect a range with start and end ip address,
+we can sometimes merge ranges that are contigous.
+
+The CSV input file needs to be sorted by the IP addresses 
+in ascending order and IPv4 and IPv6 are now allowed to be mixed.
+Overlapping ranges will generate an error/warning.
+Holes in the IP ranges are allowed but will not be merged.
 
 For the complete database from 2019-09-01 this reduces
 the CSV from 433401 lines to 211443 lines.
@@ -46,7 +51,7 @@ def main():
       cnt4In += 1
     if lastCC == cc and numStart <= lastNumEnd+1:
       # merge range
-      #print >> sys.stderr, "merge two ranges ", lastll, ll
+      #print("merge two ranges ", lastll, ll, file=sys.stderr)
       assert ll[5] == lastll[5]
       lastll = lastll[0], ll[1], lastll[2], ll[3], ll[4], ll[5]
     else:
