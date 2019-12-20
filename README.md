@@ -86,12 +86,15 @@ To create special countries for your local firewall you can place a script `xt_r
 
     BUILDDIR="$(dirname "$0")"
 
+    X0="A1,A2"
+    Y0="DK,NO,SE"
+
     cd "$BUILDDIR"
 
     # create our own countries because of the merging they are smaller than the sum
-    xt_geoip_filtercc.py "SE,DK,NO,A1,A2" ./GeoIP-merged.csv |
-      xt_geoip_mergecc.py "Next vacations" "Y0" "SE,DK,NO" |
-      xt_geoip_mergecc.py "Evil Hackers" "X0" "A1,A2" |
+    xt_geoip_filtercc.py "$X0,$Y0" ./GeoIP-merged.csv |
+      xt_geoip_mergecc.py "Next vacations" "Y0" "$Y0" |
+      xt_geoip_mergecc.py "Evil Hackers" "X0" "$X0" |
       xt_geoip_mergerange.py > ./special-countries-merged.csv
 
     # remove old data and hope that we can recreate them
