@@ -20,6 +20,7 @@ def main():
   sys.argv = [sys.argv[0]] + sys.argv[2:]   # needed for fileinput
 
   print >> sys.stderr, "Filter CC (%s)" % (list(filterCC))
+  sys.stderr.flush()
 
   reader = csv.reader(fileinput.input())
   for ll in reader:

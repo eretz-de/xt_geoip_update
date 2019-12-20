@@ -25,6 +25,7 @@ def main():
   sys.argv = [sys.argv[0]] + sys.argv[4:]   # needed for fileinput
 
   print >> sys.stderr, "Replacing CC (%s) with %s (%s)" % (list(oldCCs), newCC, newCountry)
+  sys.stderr.flush()
 
   reader = csv.reader(fileinput.input())
   for ll in reader:

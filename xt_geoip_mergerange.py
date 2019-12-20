@@ -37,6 +37,7 @@ def main():
       assert lastNumEnd <= numEnd, "wrong sort order"
       if numStart < lastNumEnd+1:
         print >> sys.stderr, "Warning: overlapping ranges, check your data", lastll, ll
+        sys.stderr.flush()
 
     if ':' in ipStart:
       cnt6In += 1
@@ -63,8 +64,11 @@ def main():
       cnt6Out += 1
     else:
       cnt4Out += 1
-  
+
+  sys.stdout.flush()
   print >> sys.stderr, "Stats: IPv4 read %(cnt4In)d ranges, wrote %(cnt4Out)d; IPv6 read %(cnt6In)d ranges, wrote %(cnt6Out)d" % locals()
+  sys.stderr.flush()
+
 
 
 if '__main__' == __name__:
