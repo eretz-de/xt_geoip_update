@@ -75,7 +75,7 @@ Now you can use this with iptables:
 
 You can use the provided docker image to download/update, convert and optimize the GeoIP database. Call it like this:
 
-    docker run --rm -v /usr/share/xt_geoip:/xt_build eretz/xt_geoip_update
+    docker run LICENSE_KEY=xxxxxxxxxxxxxxxx --rm -v /usr/share/xt_geoip:/xt_build eretz/xt_geoip_update
 
 This will replace the files in /usr/share/xt_geoip (the default location used by the xt_geoip module).
 
