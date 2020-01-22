@@ -3,6 +3,8 @@ Update xt_geoip database for netfilter
 
 This repository defines a docker image that can be used to update the current database for the geoip netfilter module. For this it uses the Docker image from https://github.com/sander1/docker-xtables that itself uses [https://github.com/mschmitt/GeoLite2xtables](https://github.com/mschmitt/GeoLite2xtables).
 
+*Note:* Since end of 2019 you need a license key from MaxMind to download the data.
+
 
 ## Motivation
 
@@ -115,6 +117,9 @@ If you call the docker image as a monthly cron job to update the xt_geoip databa
 
     #!/bin/bash
 
+    # MaxMind license key
+    LICKEY="xxxxxxxxxxxxxxxx"
+
     # update image to avoid using an old one from the cache
     docker pull eretz/xt_geoip_update
 
@@ -123,6 +128,6 @@ If you call the docker image as a monthly cron job to update the xt_geoip databa
     /usr/bin/snapper --config root create \
       --description "$0: download and convert GeoLite2xtables" \
       --cleanup-algorithm number \
-      --command "docker run --rm -v /usr/share/xt_geoip:/xt_build eretz/xt_geoip_update"
+      --command "docker run -e LICENSE_KEY=$LICKEY --rm -v /usr/share/xt_geoip:/xt_build eretz/xt_geoip_update"
 
 This cron-job uses *snapper* to make a snapshot before and after the update.
