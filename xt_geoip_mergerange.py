@@ -5,7 +5,7 @@ Merges GeoIP ranges from a GeoLite2 database.
 
 Because the original database works with subnets (netmasks) but we
 expect a range with start and end ip address,
-we can sometimes merge ranges that are contigous.
+we can sometimes merge ranges that are contiguous.
 
 The CSV input file needs to be sorted by the IP addresses 
 in ascending order and IPv4 and IPv6 are now allowed to be mixed.
