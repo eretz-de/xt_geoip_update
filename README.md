@@ -10,7 +10,7 @@ This repository defines a docker image that can be used to update the current da
 
 Because these tools need to convert the new datasource to the old format there are too many IP ranges defined. This stems from the fact, that the new database uses subnets but the old database uses ranges with start and end ip addresses which is also used for the binary files created for the Netfilter module.
 
-But subnetting is not always able to concatenate two contigous IP ranges:
+But subnetting is not always able to concatenate two contiguous IP ranges:
 
     192.168.1.0/24
     192.168.2.0/24
